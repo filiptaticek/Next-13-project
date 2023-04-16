@@ -9,11 +9,11 @@ export default async function MoviePage() {
   return (
     <main>
       <div className="flex flex-wrap">
-            {result.results.map((div: any) => {
-                return(
-                    <Movie title={div.title} key={div.id} id={div.id} posterPath={div.poster_path} releaseDate={div.release_date} />
-                    )
-                })}
+        {result.results.map((div: any) => {
+          return(
+            <Movie title={div.title} key={div.id} id={div.id} posterPath={div.poster_path} releaseDate={div.release_date} />
+          )
+        })}
       </div>
       <p>bin daaa</p>
     </main>
