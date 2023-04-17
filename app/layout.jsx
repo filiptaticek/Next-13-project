@@ -2,7 +2,7 @@
 import "./globals.css"
 import { Montserrat } from "@next/font/google"
 import Nav from "./components/Nav"
-import QueryWrapper from "@/pages/api/auth/QueryWrapper"
+import QueryWrapper from "@/app/components/QueryWrapper"
 
 const montserrat = Montserrat({ //specific font from @next/font library
   weight:["400","900"],

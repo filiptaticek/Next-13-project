@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
+import toast from "react-hot-toast"
 
 export default function AddPost () {
 
@@ -13,10 +14,10 @@ export default function AddPost () {
     async (title: string) => await axios.post("/api/post/addpost", { title }),
     {
       onError: (error:any) => {
-        console.log(error)
+        toast.error(error.response.data.message, {})
       },
       onSuccess: (data) => {
-        console.log(data)
+        toast.success(data.data.message, {})
         setTitle("")
         setDisabled(false)
       }
