@@ -9,4 +9,5 @@ Important scripts and steps:
 7. Starting with auth. We're gonna use next auth => npm install next auth
 8. Create a auth folder in pages/api, create a [...nextAuth].js file
 9. npm install next-auth @prisma/client @next-auth/prisma-adapter
-10. 
+10. For queries, we will use tanstack library, install with npm i @tanstack/react-query
+11. Now we wrap our app with its component

@@ -2,6 +2,7 @@
 import "./globals.css"
 import { Montserrat } from "@next/font/google"
 import Nav from "./components/Nav"
+import QueryWrapper from "@/pages/api/auth/QueryWrapper"
 
 const montserrat = Montserrat({ //specific font from @next/font library
   weight:["400","900"],
@@ -17,10 +18,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${montserrat.className}`}>
-        <Nav/>
-        <div className="p-10">
-          {children}
-        </div>
+        <QueryWrapper>
+          <Nav/>
+          <div className="p-10">
+            {children}
+          </div>
+        </QueryWrapper>
       </body>
     </html>
   )
