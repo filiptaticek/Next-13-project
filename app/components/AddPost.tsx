@@ -33,7 +33,6 @@ export default function AddPost () {
     setDisabled(true)
     //toast.loading("Creating your post...", {id: toastPostID})  
     mutate(title)
-
   }
 
   return(
