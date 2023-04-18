@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body className={`${montserrat.className}`}>
         <QueryWrapper>
           <Nav/>
-          <div className="p-10">
+          <div className="bg-gray-200 p-10">
             {children}
           </div>
         </QueryWrapper>

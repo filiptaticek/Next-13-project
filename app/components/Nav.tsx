@@ -12,7 +12,7 @@ export default async function Nav() {
   return (
     <nav className="flex items-center justify-between p-8">
       <Link href="/" >
-            Ich gehe nirgendwo hin
+            This is navigation
       </Link>
       <ul>
         {session?.user? <Logged image={session.user.image || ""} />:<Login />}

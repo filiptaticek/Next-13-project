@@ -12,16 +12,18 @@ export default function AddPost () {
   const toastPostID = ""
 
   const { mutate } = useMutation(
-    async (title: string) => await axios.post("/api/post/addpost", { title }),
+    async (title: string) => await axios.post("/api/post/addPost", { title }),
     {
       onError: (error:any) => {
         if (error instanceof AxiosError) {
-          toast.error(error?.response?.data.message, {id: toastPostID})
+          toast.error("Something went wrong", {id: toastPostID})
+          console.log("Error sending post:", error.response?.data)
         }
         setDisabled(false)
       },
       onSuccess: (data) => {
-        toast.success(data.data.message, {id: toastPostID})
+        toast.success("Post has been made! ", {id: toastPostID})
+        console.log("Post succesful: ", data.data)
         setTitle("")
         setDisabled(false)
       }
@@ -36,19 +38,19 @@ export default function AddPost () {
   }
 
   return(
-    <form onSubmit={submitPost}>
+    <form className="rounded-md bg-white" onSubmit={submitPost}>
       <div>
         <div className="p-5">
           <textarea 
             maxLength={300}
             onChange={(e) =>setTitle(e.target.value)} 
-            className="w-full rounded-md border border-black bg-gray-200 p-8 placeholder:text-black"
+            className="w-full rounded-md bg-gray-200 p-8 placeholder:text-black"
             name="title" 
             value={title} 
             placeholder="What's your on your mind ?"
           />
           <div className="flex items-center justify-between">
-            <p className="font-bold">{title.length}/300</p>
+            <p>{title.length}/300</p>
             <button 
               type="submit"
               className="my-2 rounded-md bg-green-600 px-5 py-2 text-white"
