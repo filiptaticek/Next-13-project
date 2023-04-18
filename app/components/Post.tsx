@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import {IPost} from "../types"
 import Image from "next/image"
 
@@ -18,6 +19,16 @@ export function Post ({post}:{post:IPost} ) {
       </div>
       <div className="my-8">
         <p className="break-all">{post.title}</p>
+      </div>
+      <div className="flex cursor-pointer items-center gap-4">
+        <Link
+          href={`/post/${post.id}`}
+        >
+          <p className="text-sm font-bold text-gray-700">
+            Comments
+          </p>
+        </Link>
+        <div/>
       </div>
     </div>
   )

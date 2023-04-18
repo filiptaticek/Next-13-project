@@ -7,7 +7,6 @@ import Logged from "./Logged"
 export default async function Nav() {
 
   const session = await getServerSession(authOptions)
-  console.log(session)
 
   return (
     <nav className="flex items-center justify-between p-8">
