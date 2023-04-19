@@ -5,5 +5,11 @@ export interface IPost {
     user: {
       name: string,
       image: string
-    }
+    },
+    comments?: {
+      createdAt: string,
+      content: string,
+      postId: number,
+      userId: number
+    }[]
 }

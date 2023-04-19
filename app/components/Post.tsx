@@ -25,7 +25,7 @@ export function Post ({post}:{post:IPost} ) {
           href={`/post/${post.id}`}
         >
           <p className="text-sm font-bold text-gray-700">
-            Comments
+            {post.comments?.length} Comments
           </p>
         </Link>
         <div/>
