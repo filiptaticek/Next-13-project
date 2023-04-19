@@ -20,7 +20,6 @@ export default function Home () {
 
   if (error) return <div>{error.toString()}</div>
   if (isLoading) return <div>Loading...</div>
-  console.log(data)
 
   return (
     <main>

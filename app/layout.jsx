@@ -1,13 +1,7 @@
 //this file wrapps up all the files in the project
 import "./globals.css"
-import { Montserrat } from "@next/font/google"
 import Nav from "./components/Nav"
 import QueryWrapper from "@/app/components/QueryWrapper"
-
-const montserrat = Montserrat({ //specific font from @next/font library
-  weight:["400","900"],
-  subsets: ["latin"]
-})
 
 export const metadata = {
   title: "Create Next App",
@@ -17,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className}`}>
+      <body>
         <QueryWrapper>
           <Nav/>
           <div className="bg-gray-200 p-10">
