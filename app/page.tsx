@@ -20,11 +20,12 @@ export default function Home () {
 
   if (error) return <div>{error.toString()}</div>
   if (isLoading) return <div>Loading...</div>
+  const reversedData = data?.reverse()
 
   return (
     <main>
       <AddPost />
-      {data?.map((post:IPost) => {
+      {reversedData?.map((post:IPost) => {
         return(
           <Post post={post} key={post.id} />
         )

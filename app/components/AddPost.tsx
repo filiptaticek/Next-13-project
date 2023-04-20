@@ -4,12 +4,14 @@ import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import axios, { AxiosError } from "axios"
 import toast from "react-hot-toast"
+import { useQueryClient } from "@tanstack/react-query"
 
 export default function AddPost () {
 
   const [title, setTitle] = useState("")
   const [disabled, setDisabled] = useState(false)
   const toastPostID = ""
+  const queryClient = useQueryClient()
 
   const { mutate } = useMutation(
     async (title: string) => await axios.post("/api/post/addPost", { title }),
@@ -26,6 +28,7 @@ export default function AddPost () {
         console.log("Post succesful: ", data.data)
         setTitle("")
         setDisabled(false)
+        queryClient.invalidateQueries(["allPosts"]) //if we add new post, the old query is refetched
       }
     }
   )
