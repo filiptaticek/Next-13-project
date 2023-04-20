@@ -5,24 +5,31 @@ import { IPost } from "../types"
 import { useState } from "react"
 import Toggle from "./Toggle"
 import axios from "axios"
-import { useMutation } from "@tanstack/react-query"
-
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "react-hot-toast"
 
 export default function MyPost ({post, user ,image}:{post:IPost, user:string, image:string}) {
 
   const [show, setShow] = useState(false)
+  const queryClient = useQueryClient()
   const {mutate} = useMutation(
     async (id:string) => {
-      await axios.delete("/api/post/deletePost", {data:{id}}),
+      await axios.delete("/api/post/deletePost", {data:id}),
       {
-        onError: (error: any) => console.log(error),
-        onSuccess: (data: any) => console.log(data)
+        onError: (error: any) => {
+          console.log(error)
+          toast.error("Error deleting that post", {id: "toastPostID"})
+        },
+        onSuccess: (data: any) => {
+          console.log(data)
+          toast.success("Post deleted successfully", {id: "toastPostID"})
+          queryClient.invalidateQueries(["allPosts"])}
       }
     },
   )
 
   const deletePost = () => {
-    mutate("3")
+    mutate(post.id.toString())
   }
 
 
