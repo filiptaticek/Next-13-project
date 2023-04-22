@@ -26,7 +26,6 @@ export default function AddPost () {
       onSuccess: (data) => {
         toast.success("Post has been made! ", {id: toastPostID})
         console.log("Post succesful: ", data.data)
-        setTitle("")
         setDisabled(false)
         queryClient.invalidateQueries(["allPosts"]) //if we add new post, the old query is refetched
       }
@@ -35,6 +34,7 @@ export default function AddPost () {
 
   async function submitPost (e:React.FormEvent) {
     e.preventDefault()
+    setTitle("")
     setDisabled(true)
     //toast.loading("Creating your post...", {id: toastPostID})  
     mutate(title)

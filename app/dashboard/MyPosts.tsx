@@ -14,7 +14,7 @@ export default function MyPosts () {
 
   const {data, error, isLoading} = useQuery({
     queryFn: fetchAuthPosts,
-    queryKey: ["authPosts"],
+    queryKey: ["allPosts"],
   })
 
   if (error) return <div>{error.toString()}</div>

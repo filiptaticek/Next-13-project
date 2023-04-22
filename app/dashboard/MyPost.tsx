@@ -12,21 +12,23 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
 
   const [show, setShow] = useState(false)
   const queryClient = useQueryClient()
+
   const {mutate} = useMutation(
     async (id:string) => {
-      await axios.delete("/api/post/deletePost", {data:id}),
-      {
-        onError: (error: any) => {
-          console.log(error)
-          toast.error("Error deleting that post", {id: "toastPostID"})
-        },
-        onSuccess: (data: any) => {
-          console.log(data)
-          toast.success("Post deleted successfully", {id: "toastPostID"})
-          queryClient.invalidateQueries(["allPosts"])}
+      await axios.delete("/api/post/deletePost", {data:id})
+    },
+    {
+      onError: (error: any) => {
+        console.log(error)
+      },
+      onSuccess: (data: any) => {
+        console.log(data)
+        toast.success("Post has been deleted.", { id: "" })
+        queryClient.invalidateQueries(["allPosts"])
       }
     },
   )
+
 
   const deletePost = () => {
     mutate(post.id.toString())
