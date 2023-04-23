@@ -15,7 +15,6 @@ export default async function handler(
   })
 
   if (req.method === "POST") {
-    console.log("Došlo mi to")
     try{
       const { title, postId } = req.body.data
 
@@ -27,19 +26,11 @@ export default async function handler(
           userId: user?.id,
           postId : postId
         }})
-       
-      console.log("Yo mama! ")
 
       return res.status(200).json({ result })
     }
 
     catch(err){
-      const { title, postId } = req.body.data
-      console.log("Fuck já",{
-        message:title,
-        userId: user?.id,
-        postId : postId
-      })
       res.status(403).json({ err: "Error has occured while deleting a post" })
     }
   }

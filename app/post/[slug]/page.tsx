@@ -35,11 +35,11 @@ export default function PostDetail (url: URL) {
       <p className="my-6 text-center text-2xl font-bold text-gray-700">Add a comment</p>
       <AddComment id={data.id} />
       <p className="my-6 text-center text-2xl font-bold text-gray-700">Commentars</p>
-      {data.comments.map((comment:any) => (
+      {data?.comments?.map((comment:any) => (
         <div className="my-2 rounded-md bg-white p-4" key={comment.id}>
           <div className="flex items-center gap-2">
             <Image
-              src={comment.user.image}
+              src={comment.user?.image}
               alt="avatar"
               width={40}
               height={40}

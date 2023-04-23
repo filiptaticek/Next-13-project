@@ -19,7 +19,6 @@ export default function MyPosts () {
 
   if (error) return <div>{error.toString()}</div>
   if (isLoading) return <div>Loading...</div>
-  console.log(data)
 
   return(
 
