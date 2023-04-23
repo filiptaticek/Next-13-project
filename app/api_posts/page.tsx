@@ -1,5 +1,5 @@
 async function getData () {
-  const result = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const result = await fetch("https://jsonplaceholder.typicode.com/posts")
   const data = await result.json()
   return data
 }
