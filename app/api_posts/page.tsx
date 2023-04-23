@@ -9,6 +9,8 @@ async function getData () {
 export default async function AboutMePage () {
   const data = await getData()
 
+  
+
   return (
     <div>
       <h1>Some of the posts:</h1>

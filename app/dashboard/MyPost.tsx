@@ -47,7 +47,7 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
       <div className="my-8 flex gap-4">
         <p className="break-all font-bold">{post.comments?.length} comments</p>
         <p 
-          className="cursor-pointer"
+          className="cursor-pointer font-bold text-red-500"
           onClick={() => setShow(!show)}
         >Delete</p>
       </div>

@@ -7,12 +7,12 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     try {
-      console.log(req.query,"jedu bomby šašku!")
       const data = await prisma.post.findUnique({
         where: {
           id: req.query.detailPost,
         },
         include: {
+          user: true,
           comments: {
             include: {
               user: true,

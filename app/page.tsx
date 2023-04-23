@@ -20,11 +20,12 @@ export default function Home () {
 
   if (error) return <div>{error.toString()}</div>
   if (isLoading) return <div>Loading...</div>
+  console.log("Hlídací pes:", data)
 
   return (
     <main>
       <AddPost />
-      {data?.map((post:IPost) => {
+      {data&&data?.map((post:IPost) => {
         return(
           <Post post={post} key={post.id} />
         )
