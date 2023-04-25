@@ -1,9 +1,9 @@
 "use client"
 
-import { Post } from "@/app/components/Post"
+import { Post } from "@/src/components/Post"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
-import AddComment from "@/app/components/AddComment"
+import AddComment from "@/src/components/AddComment"
 import Image from "next/image"
 
 type URL = {

@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { redirect } from "next/navigation"
-import MyPosts from "./MyPosts"
+import MyPosts from "../../src/components/MyPosts"
 
 export default async function Dashboard () {
 

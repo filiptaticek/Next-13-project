@@ -1,7 +1,7 @@
 //this file wrapps up all the files in the project
 import "./globals.css"
-import Nav from "./components/Nav"
-import QueryWrapper from "@/app/components/QueryWrapper"
+import Nav from "../src/components/Nav"
+import QueryWrapper from "@/src/components/QueryWrapper"
 
 export const metadata = {
   title: "Create Next App",
