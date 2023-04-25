@@ -1,9 +1,8 @@
 import Link from "next/link"
 import Login from "./Login"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "../../pages/api/auth/[...nextauth]"
+import { authOptions } from "../../../pages/api/auth/[...nextauth]"
 import Logged from "./Logged"
-import { Button } from "./Button"
 
 export default async function Nav() {
 

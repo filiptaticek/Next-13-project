@@ -1,10 +1,10 @@
 "use client"
 
-import AddPost from "../src/components/AddPost"
-import { Post } from "../src/components/Post"
+import AddPost from "../src/server/components/AddPost"
+import { Post } from "../src/server/components/Post"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
-import { IPost } from "../src/types"
+import { IPost } from "../src/server/types"
 
 async function allPosts () {
   const response = await axios.get("/api/post/getPost")
