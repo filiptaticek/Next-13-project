@@ -12,7 +12,7 @@ export default async function Dashboard () {
 
   return(
     <div>
-      <h1 className="text-2xl font-bold">Welcome back {session?.user?.name} !</h1>
+      <h1 className="text-2xl font-bold"> My posts </h1>
       <MyPosts />
     </div>
   )

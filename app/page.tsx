@@ -24,7 +24,7 @@ export default function Home () {
   return (
     <main>
       <AddPost />
-      {Array.isArray(data)&&data?.map((post:IPost) => {
+      {Array.isArray(data)&&data.reverse()?.map((post:IPost) => {
         return(
           <Post post={post} key={post.id} />
         )
