@@ -1,37 +1,35 @@
-import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/authOptions"
 import prisma from "../../../../prisma/client"
+import { NextResponse, NextRequest } from "next/server"
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+export async function POST(
+  req: NextRequest,
 ) {
-  const session = await getServerSession( req, res, authOptions )
-  if (!session) { return res.status(403).json({ err: "Not authenticated" })}
+  const session = await getServerSession( authOptions )
+  if (!session) new NextResponse("Not authenticated.", { status: 403 })
   //Get the user
   const user = await prisma.user.findUnique({
     where: { email: session?.user?.email }
   })
 
-  if (req.method === "POST") {
-    try{
-      const { title, postId } = req.body.data
+  try{
+    const request: {data:{title:string, postId: string}} = await req.json()
+    const { title, postId }:{title:string, postId: string} = request.data
 
-      if (!title) { return res.status(403).json({ err: "No title" }) }
+    if (!title) new NextResponse("Content missing.", { status: 403 })
 
-      const result = await prisma.comment.create({
-        data: {
-          content:title,
-          userId: user?.id,
-          postId : postId
-        }})
+    const result = await prisma.comment.create({
+      data: {
+        content:title,
+        userId: user?.id,
+        postId : postId
+      }})
 
-      return res.status(200).json({ result })
-    }
+    return NextResponse.json(result)
+  }
 
-    catch(err){
-      res.status(403).json({ err: "Error has occured while deleting a post" })
-    }
+  catch(err){
+    new NextResponse("Error while adding a comment.", { status: 403 })
   }
 }

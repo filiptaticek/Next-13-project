@@ -28,7 +28,6 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
   )
 
   const deletePost = () => {
-    console.log("Tohle posílám Karlovi: ", post.id)
     mutate(post.id.toString())
   }
 

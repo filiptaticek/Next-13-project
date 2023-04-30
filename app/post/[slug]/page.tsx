@@ -1,9 +1,9 @@
 "use client"
 
-import { Post } from "@/src/server/components/Post"
+import { Post } from "@/server/components/Post"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
-import AddComment from "@/src/server/components/AddComment"
+import AddComment from "@/server/components/AddComment"
 import Image from "next/image"
 
 type URL = {
@@ -26,7 +26,6 @@ export default function PostDetail (url: URL) {
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>{error.toString()}</div>
-  console.log(data, "Tady tycígo")
 
   return(
     <div>

@@ -20,7 +20,7 @@ export default function AddComment ({id}:{id:string}) {
   const queryClient = useQueryClient()
 
   const { mutate } = useMutation(
-    async (data: { title:string,postId:string }) => await axios.post("/api/post/addComment", { data }),
+    async (data:{ title:string,postId:string }) => await axios.post("/api/post/addComment", { data }),
     {
       onError: (error:any) => {
         if (error) {

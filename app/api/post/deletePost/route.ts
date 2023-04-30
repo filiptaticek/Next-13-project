@@ -3,7 +3,7 @@ import { authOptions } from "@/authOptions"
 import prisma from "../../../../prisma/client"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function DELETE(req:any) {
+export async function DELETE(req:NextRequest) {
 
   const session = await getServerSession(authOptions)
 
@@ -12,7 +12,6 @@ export async function DELETE(req:any) {
   }
 
   const  postId = req.body
-  console.log("AJDÍČKO", postId)
 
   try {
     const result = await prisma.post.delete({

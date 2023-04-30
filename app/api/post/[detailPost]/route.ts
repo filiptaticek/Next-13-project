@@ -1,14 +1,17 @@
-import type { NextApiRequest } from "next"
 import prisma from "../../../../prisma/client"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(
-  req: NextApiRequest,
+  req: NextRequest,
 ) {
+
+  const url = req.url
+  const zmenena = url.substring(url.lastIndexOf("/post/") + 6)
+
   try {
     const data = await prisma.post.findUnique({
       where: {
-        id: req.query.detailPost,
+        id: zmenena
       },
       include: {
         user: true,
