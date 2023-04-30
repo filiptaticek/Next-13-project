@@ -14,7 +14,7 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
   const queryClient = useQueryClient()
 
   const { mutate } = useMutation(
-    async (id:string) => await axios.delete("/api/post/deletePost", {data: id} ),
+    async () => await axios.delete(`/api/post/deletePost/${post.id.toString()}`),
     {
       onError: (error: any) => {
         console.log(error)
@@ -28,7 +28,7 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
   )
 
   const deletePost = () => {
-    mutate(post.id.toString())
+    mutate()
   }
 
   return(

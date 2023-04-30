@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/authOptions"
-import prisma from "../../../../prisma/client"
+import prisma from "../../../../../prisma/client"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function DELETE(req:NextRequest) {
@@ -11,7 +11,7 @@ export async function DELETE(req:NextRequest) {
     new NextResponse("Not authenticated", { status: 403 })
   }
 
-  const  postId = req.body
+  const postId = req.url.substring(req.url.lastIndexOf("/deletePost/") + 12)
 
   try {
     const result = await prisma.post.delete({

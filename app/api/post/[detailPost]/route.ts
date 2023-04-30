@@ -5,13 +5,12 @@ export async function GET(
   req: NextRequest,
 ) {
 
-  const url = req.url
-  const zmenena = url.substring(url.lastIndexOf("/post/") + 6)
+  const postId = req.url.substring(req.url.lastIndexOf("/post/") + 6)
 
   try {
     const data = await prisma.post.findUnique({
       where: {
-        id: zmenena
+        id: postId
       },
       include: {
         user: true,
