@@ -31,9 +31,7 @@ export default function PostDetail (url: URL) {
     <div>
       <p className="my-6 text-center text-2xl font-bold text-gray-700">Post Detail</p>
       <Post post={data} />
-      <p className="my-6 text-center text-2xl font-bold text-gray-700">Add a comment</p>
-      <AddComment id={data.id} />
-      <p className="my-6 text-center text-2xl font-bold text-gray-700">Commentars</p>
+      <p className="my-6 text-center text-2xl font-bold text-gray-700">Comments</p>
       {data?.comments?.map((comment:any) => (
         <div className="my-2 rounded-md bg-white p-4" key={comment.id}>
           <div className="flex items-center gap-2">
@@ -52,6 +50,8 @@ export default function PostDetail (url: URL) {
           </div>
         </div>
       ))}
+      <p className="my-6 text-center text-2xl font-bold text-gray-700">Add a comment</p>
+      <AddComment id={data.id} />
     </div>
   )
 }
