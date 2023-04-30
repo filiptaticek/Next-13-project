@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { IPost } from "../types"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Toggle from "./Toggle"
 import axios from "axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -12,29 +12,32 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
 
   const [show, setShow] = useState(false)
   const queryClient = useQueryClient()
+  const toastPostID = useRef("")
 
   const { mutate } = useMutation(
     async () => await axios.delete(`/api/post/deletePost/${post.id.toString()}`),
     {
-      onError: (error: any) => {
-        console.log(error)
+      onError: () => {
+        toast.success("Post has not been deleted.", { id: "" })
+        toast.remove(toastPostID.current)
       },
-      onSuccess: (data: any) => {
-        console.log(data)
+      onSuccess: () => {
         toast.success("Post has been deleted.", { id: "" })
         queryClient.invalidateQueries(["allPosts"])
+        toast.remove(toastPostID.current)
       }
     },
   )
 
   const deletePost = () => {
+    toastPostID.current = toast.loading("Deleting your post...")
     mutate()
   }
 
   return(
     <div className="my-8 rounded-lg bg-white p-8">
       <div className="flex place-items-center gap-4">
-        <Image src={image} alt="avatar" width={40} height={40} className="rounded-full" />
+        <Image src={image} alt="avatar" width={40} height={40} className="rounded-full" priority/>
         <h3 className="font-bold text-gray-700">{user}</h3>
       </div>
       <div className="my-8">

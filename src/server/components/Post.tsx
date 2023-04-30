@@ -14,6 +14,7 @@ export function Post ({post}:{post:IPost} ) {
           width={40}
           height={40}
           className="rounded-full"
+          priority
         />
         <p className="ml-2 font-bold text-gray-700">{post.user?.name}</p>
       </div>

@@ -43,6 +43,7 @@ export default function PostDetail (url: URL) {
               width={40}
               height={40}
               className="rounded-full"
+              priority
             />
             <p className="ml-2 font-bold text-gray-700">{comment.user.name}</p>
           </div>

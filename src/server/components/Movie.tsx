@@ -9,7 +9,7 @@ export default function Movie ({title, id, posterPath, releaseDate}:any) {
       <h1 className="font-bold">{title}</h1>
       <p>{releaseDate}</p>
       <Link href={`/movie/${id.toString()}`}>
-        {<Image className="m-auto h-[400px] w-[200px]" width={200} height={300} src={imagePath+posterPath} alt="" />}
+        {<Image className="m-auto h-[400px] w-[200px]" width={200} height={300} src={imagePath+posterPath} alt="" priority/>}
       </Link>
 
     </div>
