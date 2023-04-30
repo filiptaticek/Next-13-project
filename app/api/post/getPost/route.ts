@@ -1,7 +1,7 @@
 import prisma from "../../../../prisma/client"
 import { NextResponse } from "next/server"
 
-export default async function GET(
+export async function GET(
 ) {
   try {
     const data = await prisma.post.findMany({
@@ -10,7 +10,7 @@ export default async function GET(
         comments: true
       },
     })
-    return NextResponse.json({ data })
+    return NextResponse.json( data )
   }
   catch(error){return NextResponse.json({ error })}
 }

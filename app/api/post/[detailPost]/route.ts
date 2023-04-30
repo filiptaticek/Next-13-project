@@ -1,10 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest } from "next"
 import prisma from "../../../../prisma/client"
 import { NextResponse } from "next/server"
 
-export default async function GET(
+export async function GET(
   req: NextApiRequest,
-  res: NextApiResponse
 ) {
   try {
     const data = await prisma.post.findUnique({
@@ -20,8 +19,8 @@ export default async function GET(
         }
       },
     })
-    return NextResponse.json({ data })
-  } catch (err) {
-    res.status(403).json({ err: "Error has occured while making a post" })
+    return NextResponse.json( data )
+  } catch (error) {
+    new NextResponse(`Error while fetching the post: ${error} `, { status: 403 })
   }
 }

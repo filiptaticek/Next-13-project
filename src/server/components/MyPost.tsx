@@ -13,10 +13,8 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
   const [show, setShow] = useState(false)
   const queryClient = useQueryClient()
 
-  const {mutate} = useMutation(
-    async (id:string) => {
-      await axios.delete("/api/post/deletePost", {data:id})
-    },
+  const { mutate } = useMutation(
+    async (id:string) => await axios.delete("/api/post/deletePost", {data: id} ),
     {
       onError: (error: any) => {
         console.log(error)
@@ -29,11 +27,10 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
     },
   )
 
-
   const deletePost = () => {
+    console.log("Tohle posílám Karlovi: ", post.id)
     mutate(post.id.toString())
   }
-
 
   return(
     <div className="my-8 rounded-lg bg-white p-8">

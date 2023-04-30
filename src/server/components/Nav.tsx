@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Login from "./Login"
 import { getServerSession } from "next-auth/next"
-//import authOptions from "../../../app/api/auth/[...nextauth]"
 import { authOptions } from "../../authOptions"
 import Logged from "./Logged"
 

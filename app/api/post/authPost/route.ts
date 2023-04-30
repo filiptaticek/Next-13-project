@@ -1,12 +1,9 @@
-import type { NextApiRequest } from "next"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/authOptions"
 import prisma from "../../../../prisma/client"
 import { NextResponse } from "next/server"
 
-export default async function handler(
-  req: NextApiRequest,
-) {
+export async function GET() {
   const session = await getServerSession(authOptions)
   try {
     const data = await prisma.user.findUnique({
@@ -24,10 +21,7 @@ export default async function handler(
         },
       },
     })
-    return NextResponse.json({
-      authenticated: !!session,
-      session,
-    })
+    return NextResponse.json( data )
   } catch (err) {
     new NextResponse(null, { status: 403 })
   }
