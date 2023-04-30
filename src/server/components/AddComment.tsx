@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import axios from "axios"
 import { useQueryClient, useMutation } from "@tanstack/react-query"
 import { toast } from "react-hot-toast"
@@ -9,34 +9,35 @@ export default function AddComment ({id}:{id:string}) {
 
   const [ title, setComment ] = useState("")
   const [ disabled, setDisabled ] = useState(false)
-
-  async function handleSubmit (e:any) {
-    e.preventDefault()
-    setComment("")
-    setDisabled(true)
-    mutate({title, postId: id})
-  }
-
   const queryClient = useQueryClient()
+  const toastPostID = useRef("")
 
   const { mutate } = useMutation(
-    async (data: { title:string,postId:string }) => await axios.post("/api/post/addComment", { data }),
+    async (data:{ title:string,postId:string }) => await axios.post("/api/post/addComment", { data }),
     {
       onError: (error:any) => {
         if (error) {
           toast.error("Something went wrong", {id: "toastPostID"})
-          console.log("Error sending post:", error)
+          toast.remove(toastPostID.current)
         }
         setDisabled(false)
       },
-      onSuccess: (data) => {
-        toast.success("Post has been made! ", {id: "toastPostID"})
-        console.log("Post succesful: ", data.data)
+      onSuccess: () => {
+        toast.success("New comment has been made! ", {id: "toastPostID"})
+        toast.remove(toastPostID.current)
         setDisabled(false)
         queryClient.invalidateQueries(["allPosts"]) //if we add new post, the old query is refetched
       }
     }
   )
+
+  async function handleSubmit (e:any) {
+    e.preventDefault()
+    toastPostID.current = toast.loading("Creating your comment...")  
+    setComment("")
+    setDisabled(true)
+    mutate({title, postId: id})
+  }
 
   return(
     <form className="my-8" onSubmit={handleSubmit}>
@@ -48,6 +49,7 @@ export default function AddComment ({id}:{id:string}) {
           name="title" 
           value={title} 
           placeholder="What's your on your mind ?"
+          autoFocus
         />
         <div className="flex items-center justify-between">
           <p>{title.length}/300</p>

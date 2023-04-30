@@ -20,6 +20,7 @@ export default function Logged({image}: {image: string}) {
           src={image}
           alt="Flowbite Logo" 
           className="mb-2 w-[85%] rounded-full"
+          priority
         />
       </Link>
     </li>

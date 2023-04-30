@@ -54,6 +54,7 @@ export default function AddPost () {
             name="title" 
             value={title} 
             placeholder="What's your on your mind ?"
+            autoFocus
           />
           <div className="flex items-center justify-between">
             <p>{title.length}/300</p>
