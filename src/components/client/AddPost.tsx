@@ -53,7 +53,7 @@ export default function AddPost () {
             className="w-full rounded-md bg-gray-200 p-8 placeholder:text-black"
             name="title" 
             value={title} 
-            placeholder="What's your on your mind ?"
+            placeholder="Add a post..."
             autoFocus
           />
           <div className="flex items-center justify-between">

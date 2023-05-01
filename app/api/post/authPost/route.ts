@@ -17,6 +17,7 @@ export async function GET() {
           },
           include: {
             comments: true,
+            user: true
           },
         },
       },

@@ -1,14 +1,14 @@
 "use client"
-
+import {IPost} from "../../types"
 import Image from "next/image"
-import { IPost } from "../types"
-import { useState, useRef } from "react"
-import Toggle from "./Toggle"
+import Toggle from "../server/Toggle"
 import axios from "axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "react-hot-toast"
+import { useState, useRef } from "react"
+import Link from "next/link"
 
-export default function MyPost ({post, user ,image}:{post:IPost, user:string, image:string}) {
+export function Post ({post, deleteButton}:{post:IPost, deleteButton?:boolean}) {
 
   const [show, setShow] = useState(false)
   const queryClient = useQueryClient()
@@ -34,21 +34,27 @@ export default function MyPost ({post, user ,image}:{post:IPost, user:string, im
     mutate()
   }
 
-  return(
+  return (
     <div className="my-8 rounded-lg bg-white p-8">
       <div className="flex place-items-center gap-4">
-        <Image src={image} alt="avatar" width={40} height={40} className="rounded-full" priority/>
-        <h3 className="font-bold text-gray-700">{user}</h3>
+        <Image src={post.user?.image} alt="avatar" width={40} height={40} className="rounded-full" priority/>
+        <h3 className="font-bold text-gray-700">{post.user?.name}</h3>
       </div>
       <div className="my-8">
         <p className="break-all">{post.title}</p>
       </div>
       <div className="my-8 flex gap-4">
-        <p className="break-all font-bold">{post.comments?.length} comments</p>
-        <p 
+        <Link
+          href={`/post/${post.id}`}
+        >
+          <p className="text-sm font-bold text-gray-700">
+            {post.comments?.length} Comments
+          </p>
+        </Link>
+        {deleteButton&&<p 
           className="cursor-pointer font-bold text-red-500"
           onClick={() => setShow(!show)}
-        >Delete</p>
+        >Delete</p>}
       </div>
       {show && <Toggle setToggle={setShow} deletePost={deletePost} />}
     </div>

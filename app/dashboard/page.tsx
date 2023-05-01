@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/authOptions"
 import { redirect } from "next/navigation"
-import MyPosts from "../../src/server/components/MyPosts"
+import MyPosts from "../../src/components/client/MyPosts"
 
 export default async function Dashboard () {
 

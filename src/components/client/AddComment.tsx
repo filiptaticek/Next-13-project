@@ -48,7 +48,7 @@ export default function AddComment ({id}:{id:string}) {
           className="w-full rounded-md bg-white p-8 placeholder:text-black"
           name="title" 
           value={title} 
-          placeholder="What's your on your mind ?"
+          placeholder="Add a comment..."
           autoFocus
         />
         <div className="flex items-center justify-between">
