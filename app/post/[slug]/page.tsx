@@ -1,5 +1,3 @@
-"use client"
-
 import { Post } from "@/components/client/Post"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
@@ -12,15 +10,15 @@ type URL = {
     }
 }
 
-const fetchAllPosts = async (slug:string) => {
+const fetchSinglePost = async (slug:string) => {
   const response = await axios.get(`/api/post/${slug}`)
   return response.data
 }
 
-export default function PostDetail (url: URL) {
+export default async function PostDetail (url: URL) {
 
-  const {data, error, isLoading} = useQuery({
-    queryFn: () => fetchAllPosts(url.params.slug),
+  const {data, error, isLoading} = await useQuery({
+    queryFn: () => fetchSinglePost(url.params.slug),
     queryKey: ["allPosts"],
   })
 
