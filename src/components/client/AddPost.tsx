@@ -1,14 +1,13 @@
 "use client"
 
+import { useRef } from "react"
+import axios, { AxiosError } from "axios"
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
-import axios, { AxiosError } from "axios"
-import toast from "react-hot-toast"
 import { useQueryClient } from "@tanstack/react-query"
-import { useRef } from "react"
+import toast from "react-hot-toast"
 
-export default function AddPost () {
-
+export default function AddPost() {
   const [title, setTitle] = useState("")
   const [disabled, setDisabled] = useState(false)
   const queryClient = useQueryClient()
@@ -17,7 +16,7 @@ export default function AddPost () {
   const { mutate } = useMutation(
     async (title: string) => await axios.post("/api/post/addPost", { title }),
     {
-      onError: (error:any) => {
+      onError: (error: any) => {
         if (error instanceof AxiosError) {
           toast.remove(toastPostID.current)
           toast.error("Something went wrong")
@@ -35,36 +34,35 @@ export default function AddPost () {
     }
   )
 
-  async function submitPost (e:React.FormEvent) {
-    toastPostID.current = toast.loading("Creating your post...")  
+  async function submitPost(e: React.FormEvent) {
+    toastPostID.current = toast.loading("Creating your post...")
     e.preventDefault()
     setTitle("")
     setDisabled(true)
     mutate(title)
   }
 
-  return(
+  return (
     <form className="rounded-md bg-white" onSubmit={submitPost}>
       <div>
         <div className="p-5">
-          <textarea 
+          <textarea
             maxLength={300}
-            onChange={(e) =>setTitle(e.target.value)} 
+            onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-md bg-gray-200 p-8 placeholder:text-black"
-            name="title" 
-            value={title} 
+            name="title"
+            value={title}
             placeholder="Add a post..."
             autoFocus
           />
           <div className="flex items-center justify-between">
             <p>{title.length}/300</p>
-            <button 
+            <button
               type="submit"
               className="my-2 rounded-md bg-green-600 px-5 py-2 text-white"
-              disabled={disabled}
-            >
-            Submit
-            </button> 
+              disabled={disabled}>
+              Submit
+            </button>
           </div>
         </div>
       </div>
