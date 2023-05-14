@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body>
         <QueryWrapper>
           <Nav />
-          <div className="p-10 bg-gray-200">{children}</div>
+          <div className="bg-gray-200 p-10">{children}</div>
         </QueryWrapper>
       </body>
     </html>
