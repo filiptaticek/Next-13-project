@@ -1,5 +1,6 @@
 import React from "react"
 import "./button.css"
+//This is a react component, that is later imported in the stories file.
 
 interface ButtonProps {
   primary?: boolean
