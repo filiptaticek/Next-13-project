@@ -41,6 +41,6 @@ export const Large: Story = {
 export const Small: Story = {
   args: {
     size: "small",
-    label: "Tlačítko"
+    label: "Button"
   }
 }
