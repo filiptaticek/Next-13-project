@@ -4,7 +4,17 @@ import { Light } from "./Light"
 //define the whole Story
 const meta: Meta<typeof Light> = {
   title: "Light",
-  component: Light
+  component: Light,
+  tags: ["autodocs"], //this is set up in main.ts, so that docs are generated automatically
+  argTypes: {
+    //this is where you define how is your storybook console going to look like
+    variant: {
+      control: {
+        radio: true, //we set only one control, which is radio button with three options, even though this is actually the default state
+        options: ["red", "yellow", "green"]
+      }
+    }
+  }
 }
 
 export default meta

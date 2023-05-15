@@ -7,6 +7,7 @@ interface ILight {
   variant: "red" | "yellow" | "green"
 }
 
+/** Basic Light component */
 export function Light({ variant }: ILight) {
   return (
     <div
