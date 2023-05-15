@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { useQueryClient } from "@tanstack/react-query"
 import toast from "react-hot-toast"
+import { Button } from "./Button"
 
 export default function AddPost() {
   const [title, setTitle] = useState("")
@@ -57,12 +58,7 @@ export default function AddPost() {
           />
           <div className="flex items-center justify-between">
             <p>{title.length}/300</p>
-            <button
-              type="submit"
-              className="my-2 rounded-md bg-green-600 px-5 py-2 text-white"
-              disabled={disabled}>
-              Submit
-            </button>
+            <Button color="green" disabled={disabled} text="Submit" />
           </div>
         </div>
       </div>
